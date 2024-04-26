@@ -13,7 +13,6 @@ import androidx.compose.ui.window.rememberWindowState
 fun main() = application {
     val windowState = rememberWindowState(size = DpSize(800.dp, 1200.dp))
     val icon = BitmapPainter(useResource("rubberduck.png", ::loadImageBitmap))
-    val mainWindowState = rememberWindowState()
 
     var showMainWindow by remember { mutableStateOf(true) } // Es la primera visible.
     var showSecondWindow by remember { mutableStateOf(false) } // Mientras, la segunda está cerrada.
