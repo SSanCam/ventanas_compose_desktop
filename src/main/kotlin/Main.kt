@@ -23,12 +23,14 @@ fun main() = application {
             showMainWindow = false
             showSecondWindow = true
         })
-    } else if (showSecondWindow) {
+    }
+    if (showSecondWindow) {
         SecondWindow(icon = icon, state = windowState, onClose = { showSecondWindow = false }, onClick = {
             showSecondWindow = false
             showMainWindow = true
         })
-    } else {
+    }
+    if (!showMainWindow && !showSecondWindow){
         exitApplication()
     }
 }
