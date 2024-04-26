@@ -14,39 +14,56 @@ import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowState
 
 @Composable
 @Preview
-fun MainWindow(icon: BitmapPainter, onClose: () -> Unit) {
-    MaterialTheme {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Text(
-                text = "Main Window",
-                fontWeight = FontWeight.Bold,
-                color = Color.White,
-                fontSize = 30.sp,
-                modifier = Modifier
-                    .border(BorderStroke(2.dp, Color.Black))
-                    .background(Color.LightGray)
-                    .padding(20.dp)
-            )
-            Spacer(modifier = Modifier.height(100.dp))
-            Button(onClick = onClose) {
-                Text("Open Second Window")
+fun MainWindow(icon: BitmapPainter, state: WindowState, onClose: () -> Unit, onClick: () -> Unit) {
+    Window(
+        onCloseRequest = onClose,
+        title = "Main Window",
+        state = state,
+        icon = icon
+    ){
+        MaterialTheme {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Text(
+                    text = "Main Window",
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    fontSize = 30.sp,
+                    modifier = Modifier
+                        .border(BorderStroke(2.dp, Color.Black))
+                        .background(Color.LightGray)
+                        .padding(20.dp)
+                )
+                Spacer(modifier = Modifier.height(100.dp))
+                Button(onClick = onClick) {
+                    Text("Open Second Window")
+                }
             }
         }
     }
+
 }
 
 
 @Composable
 @Preview
-fun SecondWindow(icon: BitmapPainter, onClose: () -> Unit) {
-    MaterialTheme {
+fun SecondWindow(icon: BitmapPainter, state: WindowState, onClose: () -> Unit, onClick: () -> Unit) {
+
+    Window(
+        onCloseRequest = onClose,
+        title = "Second window",
+        state = state,
+        icon = icon
+    ) {
+        MaterialTheme {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -63,11 +80,13 @@ fun SecondWindow(icon: BitmapPainter, onClose: () -> Unit) {
                         .padding(20.dp)
                 )
                 Spacer(modifier = Modifier.height(100.dp))
-                Button(onClick = onClose) {
+                Button(onClick = onClick) {
                     Text("Open Main Window")
                 }
             }
         }
     }
+
+}
 
 
