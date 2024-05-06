@@ -30,6 +30,7 @@ fun main() = application {
             showMainWindow = true
         })
     }
+
     if (!showMainWindow && !showSecondWindow){
         exitApplication()
     }
